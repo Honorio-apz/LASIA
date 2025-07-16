@@ -1,0 +1,791 @@
+* {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+  }
+
+  :root {
+      --primary: #0066FF;
+      --secondary: #00D4FF;
+      --accent: #FF6B6B;
+      --dark: #1a1a1a;
+      --light: #f8f9fa;
+      --gray: #6c757d;
+      --white: #ffffff;
+      --text-dark: #333; /* Added for more specific text colors */
+      --text-light: #555; /* Added for more specific text colors */
+      --border-color: #eee; /* Added for consistent borders */
+      --gradient-blue: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%); /* Defined gradient */
+  }
+
+  body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      line-height: 1.6;
+      color: var(--dark);
+      overflow-x: hidden;
+      scroll-behavior: smooth; /* Smooth scrolling for anchor links */
+  }
+
+  a {
+      text-decoration: none;
+      color: var(--primary);
+  }
+
+  h1, h2, h3 {
+      color: var(--dark);
+      line-height: 1.2;
+  }
+
+  /* Navigation */
+  .nav {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(20px);
+      z-index: 1000;
+      border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  }
+
+  .nav-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      height: 70px;
+  }
+
+  .logo {
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: var(--primary);
+      text-decoration: none;
+  }
+
+  .nav-links {
+      display: flex;
+      list-style: none;
+      gap: 2rem;
+  }
+
+  .nav-links a {
+      text-decoration: none;
+      color: var(--dark);
+      font-weight: 500;
+      transition: color 0.3s ease;
+  }
+
+  .nav-links a:hover {
+      color: var(--primary);
+  }
+
+  .lang-switch {
+      background: var(--primary);
+      color: white;
+      padding: 0.5rem 1rem;
+      border-radius: 20px;
+      border: none;
+      cursor: pointer;
+      font-weight: 500;
+      transition: all 0.3s ease;
+  }
+
+  .lang-switch:hover {
+      background: var(--secondary);
+      transform: translateY(-2px);
+  }
+
+  /* Hero Section */
+  .hero {
+      height: 100vh;
+      /* Changed background to an Unsplash image for better visual */
+      background: url('https://portal.andina.pe/EDPfotografia3/Thumbnail/2021/01/31/000744932W.jpg') center center/cover no-repeat;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+  }
+
+  .hero::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      /* Using a darker overlay for readability instead of rotating SVG */
+      background: rgba(0, 0, 0, 0.6); 
+      z-index: 5;
+  }
+  
+  /* Removed @keyframes rotate as it's not used with the new ::before */
+
+  .hero-content {
+      z-index: 10;
+      position: relative;
+      max-width: 800px;
+      padding: 2rem;
+      color: white; /* Ensure hero content text is white */
+  }
+
+  .hero h1 {
+      font-size: clamp(2.5rem, 3vw, 4rem);
+      font-weight: 700;
+      color: white;
+      margin-bottom: 1rem;
+      text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+
+  .hero-subtitle {
+      font-size: 1.3rem;
+      color: rgba(255, 255, 255, 0.9);
+      margin-bottom: 2rem;
+  }
+
+  .hero-info {
+      display: flex;
+      justify-content: center;
+      gap: 2rem;
+      margin-bottom: 3rem;
+      flex-wrap: wrap;
+  }
+
+  .hero-info-item {
+      background: rgba(255, 255, 255, 0.1);
+      padding: 1rem 1.5rem;
+      border-radius: 50px;
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      color: white; /* Ensure text inside info items is white */
+  }
+
+  .countdown {
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+      margin-top: 2rem;
+  }
+
+  .countdown-item {
+      background: rgba(255, 255, 255, 0.1);
+      padding: 1rem;
+      border-radius: 10px;
+      text-align: center;
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+  }
+
+  .countdown-number {
+      font-size: 2rem;
+      font-weight: 700;
+      color: white;
+      display: block;
+  }
+
+  .countdown-label {
+      font-size: 0.9rem;
+      color: rgba(255, 255, 255, 0.8);
+  }
+
+  /* Section Styles */
+  .section {
+      padding: 5rem 0;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding-left: 2rem;
+      padding-right: 2rem;
+  }
+
+  .section-title {
+      font-size: 2.5rem;
+      font-weight: 700;
+      text-align: center;
+      margin-bottom: 3rem;
+      position: relative;
+      text-transform: uppercase; /* Match the new design's title style */
+  }
+
+  .section-title::after {
+      content: '';
+      position: absolute;
+      bottom: -10px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 80px; /* Slightly wider underline */
+      height: 4px; /* Thicker underline */
+      background: var(--gradient-blue); /* Use defined gradient */
+      border-radius: 2px;
+  }
+
+  /* Info Cards */
+  .info-grid {
+      display: grid;
+      /* This is the key change: forces 4 equal columns */
+      grid-template-columns: repeat(4, 1fr);
+      gap: 2rem;
+      margin-top: 4rem;
+  }
+
+  .info-card {
+      background: white;
+      padding: 2rem;
+      border-radius: 20px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      border: 1px solid rgba(0, 0, 0, 0.05);
+      text-align: center; /* Center content within info cards */
+  }
+
+  .info-card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+  }
+
+  .info-card-icon {
+      width: 60px;
+      height: 60px;
+      background: linear-gradient(135deg, var(--primary), var(--secondary));
+      border-radius: 15px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 1.5rem; /* Center the icon */
+      color: white; /* Icon color */
+  }
+
+  .info-card-icon svg {
+      width: 30px; /* Size of SVG icon */
+      height: 30px;
+  }
+
+  .info-card h3 {
+      font-size: 1.3rem;
+      font-weight: 600;
+      margin-bottom: 1rem;
+      color: var(--dark);
+  }
+
+  .info-card p {
+      color: var(--gray);
+      line-height: 1.7;
+  }
+
+  /* Speakers Section - BASADO EN TU CÓDIGO ORIGINAL, CON 4 CARDS POR FILA */
+.speakers-grid {
+    display: grid;
+    /* --- CAMBIO CLAVE AQUÍ --- */
+    /* Intenta crear 4 columnas de igual ancho. Cada una de ellas debe tener un minwidth de 250px para evitar que se vean muy pequeñas.
+       Si el espacio no es suficiente para 4 (ej. en tabletas), se ajustará para mostrar 3, 2 o 1. */
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); 
+    /* ------------------------ */
+    gap: 3rem; /* Tu valor original para el espacio entre cards */
+    margin-top: 4rem; /* Tu valor original para el margen superior */
+}
+
+.speaker-card {
+    background: white;
+    border-radius: 20px; /* Tu valor original */
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1); /* Tu valor original */
+    transition: transform 0.3s ease;
+    /* Estas propiedades aseguran el diseño vertical original (imagen arriba, texto abajo) */
+    display: flex; /* Para controlar el alineamiento y el padding de la imagen/info */
+    flex-direction: column; /* Apila los elementos verticalmente */
+    align-items: center; /* Centra el contenido horizontalmente (útil para texto si es centrado) */
+    text-align: center; /* Centra el texto */
+}
+
+.speaker-card:hover {
+    transform: translateY(-5px); /* Tu valor original */
+}
+
+.speaker-image {
+    width: 100%;
+    height: 300px; /* Reducimos a 300px para que las 4 cards quepan mejor sin ser demasiado altas */
+    /* Tu valor original era 350px, pero 300px ayudará a que 4 cards se vean proporcionadas horizontalmente */
+    object-fit: cover;
+}
+
+.speaker-info {
+    padding: 2rem; /* Tu valor original */
+}
+
+.speaker-name {
+    font-size: 1.4rem; /* Tu valor original */
+    font-weight: 600;
+    margin-bottom: 0.5rem; /* Tu valor original */
+    color: var(--dark);
+}
+
+.speaker-role {
+    color: var(--primary);
+    font-weight: 500;
+    margin-bottom: 1rem; /* Tu valor original */
+}
+
+.speaker-bio {
+    color: var(--gray);
+    line-height: 1.6; /* Tu valor original */
+    margin-bottom: 1.5rem; /* Tu valor original */
+    /* Añadimos truncamiento para controlar la altura si la bio es muy larga y ayuda a la uniformidad */
+    max-height: 6em; /* Ajustado para 3-4 líneas aprox. con tu font-size/line-height */
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 4; /* Mostrar 3 líneas, si no quieres truncar, quita estas 4 líneas */
+    -webkit-box-orient: vertical;
+}
+
+.speaker-socials {
+    display: flex;
+    gap: 1rem; /* Tu valor original */
+    justify-content: center; /* Center social icons */
+}
+
+.speaker-socials a {
+    width: 40px; /* Tu valor original */
+    height: 40px; /* Tu valor original */
+    background: var(--light);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--gray);
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+
+.speaker-socials a:hover {
+    background: var(--primary);
+    color: white;
+    transform: translateY(-2px);
+}
+
+/* Mobile Responsive */
+@media (max-width: 768px) {
+    /* Mantenemos tu media query original, esto apilará a 1 columna en móviles */
+    .speakers-grid {
+        grid-template-columns: 1fr;
+    }
+    /* Puedes añadir ajustes específicos para que la tarjeta se vea bien en 1 columna en móvil */
+    .speaker-image {
+        height: 250px; /* Altura de imagen para móvil */
+    }
+    .speaker-info {
+        padding: 1.5rem; /* Menos padding en móvil */
+    }
+    .speaker-name {
+        font-size: 1.3rem;
+    }
+    .speaker-role {
+        font-size: 0.9rem;
+    }
+    .speaker-bio {
+        font-size: 0.85rem;
+        line-height: 1.5;
+        -webkit-line-clamp: 4; /* Permite un poco más de texto en móvil */
+    }
+}
+
+/* Nuevo media query para tabletas o pantallas intermedias que podrían mostrar 2-3 columnas */
+@media (min-width: 769px) and (max-width: 1200px) {
+    .speakers-grid {
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); /* 2 o 3 columnas */
+        gap: 2rem;
+    }
+    .speaker-image {
+        height: 280px;
+    }
+    .speaker-info {
+        padding: 1.8rem;
+    }
+}
+
+  /* FAQ Section */
+  .faq-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+      gap: 2rem;
+      margin-top: 4rem;
+  }
+
+  .faq-item {
+      background: white;
+      padding: 2rem;
+      border-radius: 15px;
+      box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+      border: 1px solid rgba(0, 0, 0, 0.05);
+      transition: all 0.3s ease;
+  }
+
+  .faq-item:hover {
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  }
+
+  .faq-question {
+      font-size: 1.1rem;
+      font-weight: 600;
+      margin-bottom: 1rem;
+      color: var(--dark);
+  }
+
+  .faq-answer {
+      color: var(--gray);
+      line-height: 1.6;
+  }
+
+  /* Organizers Section */
+  .organizers-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 2rem;
+      margin-top: 4rem;
+  }
+
+  .organizer-card {
+      background: white;
+      padding: 2rem;
+      border-radius: 20px;
+      text-align: center;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+      transition: transform 0.3s ease;
+  }
+
+  .organizer-card:hover {
+      transform: translateY(-5px);
+  }
+
+  .organizer-image {
+      width: 100px;
+      height: 100px;
+      border-radius: 50%;
+      object-fit: cover;
+      margin: 0 auto 1.5rem;
+      border: 3px solid var(--primary);
+  }
+
+  .organizer-name {
+      font-size: 1.2rem;
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+      color: var(--dark);
+  }
+
+  .organizer-role {
+      color: var(--primary);
+      font-weight: 500;
+      margin-bottom: 0.5rem;
+  }
+
+  .organizer-institution {
+      color: var(--gray);
+      font-size: 0.9rem;
+      margin-bottom: 1rem;
+  }
+
+  /* Footer */
+  .footer {
+      background: var(--dark);
+      color: white;
+      padding: 3rem 0 1rem;
+      margin-top: 5rem;
+  }
+
+  .footer-content {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 2rem;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 2rem;
+  }
+
+  .footer-section h3 {
+      font-size: 1.3rem;
+      margin-bottom: 1rem;
+      color: var(--secondary);
+  }
+
+  .footer-section p {
+      color: rgba(255, 255, 255, 0.8);
+      line-height: 1.6;
+  }
+
+  .footer-bottom {
+      text-align: center;
+      padding-top: 2rem;
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+      color: rgba(255, 255, 255, 0.6);
+  }
+
+  /* Mobile Responsive */
+  @media (max-width: 992px) { /* Adjusted breakpoint for more flexibility */
+      .nav-links {
+          display: none; /* Hide nav links by default for smaller screens */
+      }
+
+      .hero-info {
+          flex-direction: column;
+          gap: 1rem;
+      }
+
+      .countdown {
+          flex-wrap: wrap;
+      }
+
+      .section {
+          padding: 3rem 1rem;
+      }
+      
+      /* On smaller screens, allow info cards to stack */
+      .info-grid {
+          grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); /* Allow stacking or 2 columns */
+      }
+
+      .speakers-grid,
+      .faq-grid,
+      .organizers-grid {
+          grid-template-columns: 1fr;
+      }
+  }
+
+  /* Smooth scrolling */
+  html {
+      scroll-behavior: smooth;
+  }
+
+  /* Animations */
+  .fade-in {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: all 0.6s ease;
+  }
+
+  .fade-in.visible {
+      opacity: 1;
+      transform: translateY(0);
+  }
+
+  /* Sponsors Section */
+.sponsors-section {
+    background-color: var(--light); /* Un fondo claro para esta sección */
+    text-align: center; /* Centra el título y la cuadrícula */
+    padding: 5rem 2rem; /* Espaciado interno */
+    max-width: 1200px; /* Ancho máximo de la sección */
+    margin: 0 auto; /* Centra la sección en la página */
+}
+
+.sponsors-section .section-title {
+    /* Herencia del estilo de título general (subrayado, mayúsculas) */
+    margin-bottom: 4rem; /* Espacio debajo del título */
+}
+
+.sponsors-grid {
+    display: grid;
+    /* Crea columnas que se ajusten automáticamente.
+       En pantallas grandes, intenta 3-4 por fila.
+       En pantallas más pequeñas, se reducirá a 2 o 1. */
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 2.5rem; /* Espacio entre los logotipos */
+    justify-items: center; /* Centra los elementos dentro de cada celda de la cuadrícula */
+    align-items: center; /* Alinea los elementos verticalmente en el centro */
+}
+
+.sponsor-item {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: var(--white); /* Fondo blanco para cada caja de logo */
+    padding: 1.5rem 2rem; /* Espaciado interno */
+    border-radius: 10px; /* Bordes redondeados */
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08); /* Sombra suave */
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    border: 1px solid var(--border-color); /* Borde sutil */
+    height: 120px; /* Altura fija para que todas las cajas sean uniformes */
+    width: 100%; /* Ocupa el 100% del ancho de su celda */
+    max-width: 250px; /* Limita el ancho máximo de la caja del sponsor */
+}
+
+.sponsor-item:hover {
+    transform: translateY(-8px); /* Efecto de elevación al pasar el ratón */
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.12); /* Sombra más pronunciada */
+}
+
+.sponsor-logo {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%; /* Ocupa todo el ancho disponible en el item */
+    height: 100%; /* Ocupa toda la altura disponible en el item */
+}
+
+.sponsor-logo img {
+    max-width: 100%; /* Asegura que la imagen no se desborde */
+    max-height: 80px; /* Limita la altura de los logotipos */
+    object-fit: contain; /* Ajusta la imagen dentro de su contenedor sin recortar */
+    filter: grayscale(90%); /* Los logos en escala de grises inicialmente */
+    opacity: 0.7; /* Ligeramente transparentes */
+    transition: filter 0.3s ease, opacity 0.3s ease; /* Transición suave para los efectos */
+}
+
+.sponsor-item:hover .sponsor-logo img {
+    filter: grayscale(0%); /* Color completo al pasar el ratón */
+    opacity: 1; /* Opacidad completa al pasar el ratón */
+}
+
+/* Media Queries para responsividad */
+@media (max-width: 768px) {
+    .sponsors-grid {
+        grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); /* 2 columnas en móviles */
+        gap: 1.5rem;
+    }
+
+    .sponsor-item {
+        padding: 1rem 1.5rem;
+        height: 100px; /* Un poco más pequeños en móviles */
+    }
+
+    .sponsor-logo img {
+        max-height: 60px; /* Altura de imagen de logo en móvil */
+    }
+}
+
+@media (max-width: 480px) {
+    .sponsors-grid {
+        grid-template-columns: 1fr; /* Una sola columna en los móviles más pequeños */
+    }
+}
+
+/* Venue Section */
+.venue-section {
+    background-color: var(--white); /* Fondo blanco para esta sección */
+    text-align: center;
+    padding: 5rem 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.venue-section .section-title {
+    margin-bottom: 4rem;
+}
+
+.carousel-container {
+    position: relative;
+    width: 100%;
+    max-width: 900px; /* Ancho máximo del carrusel */
+    margin: 0 auto;
+    overflow: hidden; /* Oculta las imágenes que no están en vista */
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+    background-color: var(--dark); /* Fondo oscuro para el contenedor del carrusel */
+}
+
+.carousel-track {
+    display: flex;
+    transition: transform 0.6s ease-in-out; /* Suavidad en el cambio de imagen */
+}
+
+.carousel-item {
+    min-width: 100%; /* Cada imagen ocupa el 100% del ancho del contenedor */
+    flex-shrink: 0; /* Evita que los ítems se encojan */
+    height: 480px; /* Altura fija para todas las imágenes del carrusel */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--gray); /* Color de fondo por si la imagen no carga */
+}
+
+.carousel-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Cubre el área sin distorsionarse, recorta si es necesario */
+    border-radius: 15px; /* Bordes redondeados para las imágenes dentro del carrusel */
+}
+
+.carousel-button {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: rgba(0, 0, 0, 0.5); /* Fondo semitransparente */
+    color: white;
+    border: none;
+    padding: 1rem 0.8rem;
+    cursor: pointer;
+    font-size: 1.8rem;
+    z-index: 10;
+    border-radius: 5px;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+    display: flex; /* Para centrar el ícono */
+    align-items: center;
+    justify-content: center;
+}
+
+.carousel-button:hover {
+    background-color: rgba(0, 0, 0, 0.7);
+    transform: translateY(-50%) scale(1.05);
+}
+
+.carousel-button.prev {
+    left: 15px;
+}
+
+.carousel-button.next {
+    right: 15px;
+}
+
+.carousel-indicators {
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 10px;
+    z-index: 10;
+}
+
+.indicator-dot {
+    width: 12px;
+    height: 12px;
+    background-color: rgba(255, 255, 255, 0.5);
+    border-radius: 50%;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.indicator-dot.active {
+    background-color: var(--primary); /* Punto activo con el color primario */
+    transform: scale(1.2);
+}
+
+/* Media Queries para responsividad */
+@media (max-width: 768px) {
+    .carousel-item {
+        height: 300px; /* Altura más pequeña para móviles */
+    }
+    .carousel-button {
+        padding: 0.7rem 0.5rem;
+        font-size: 1.5rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .carousel-item {
+        height: 220px; /* Altura aún más pequeña en dispositivos muy estrechos */
+    }
+    .carousel-button {
+        padding: 0.5rem 0.3rem;
+        font-size: 1.2rem;
+    }
+    .carousel-indicators {
+        bottom: 10px;
+        gap: 8px;
+    }
+    .indicator-dot {
+        width: 10px;
+        height: 10px;
+    }
+}
