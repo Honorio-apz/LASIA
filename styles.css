@@ -37,160 +37,380 @@
   }
 
   /* Navigation */
-  .nav {
-      position: fixed;
-      top: 0;
-      width: 100%;
-      background: rgba(255, 255, 255, 0.95);
-      backdrop-filter: blur(20px);
-      z-index: 1000;
-      border-bottom: 1px solid rgba(0, 0, 0, 0.1);
-  }
+/* Navigation */
+.nav {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    background: rgba(255, 255, 255, 0.98); /* Ligeramente más opaco para mayor solidez */
+    backdrop-filter: blur(15px); /* Menos blur para evitar problemas de rendimiento en algunos dispositivos */
+    z-index: 1000;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08); /* Sombra suave para darle profundidad */
+    border-bottom: 1px solid rgba(0, 0, 0, 0.05); /* Borde sutil en la parte inferior */
+}
 
-  .nav-container {
-      max-width: 1200px;
-      margin: 0 auto;
-      padding: 0 2rem;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      height: 70px;
-  }
+.nav-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 70px; /* Altura de la barra de navegación */
+}
 
-  .logo {
-      font-size: 1.5rem;
-      font-weight: 700;
-      color: var(--primary);
-      text-decoration: none;
-  }
+.logo {
+    font-size: 1.6rem; /* Ligeramente más grande */
+    font-weight: 700;
+    color: var(--primary);
+    text-decoration: none;
+    flex-shrink: 0; /* Evita que el logo se encoja */
+}
 
-  .nav-links {
-      display: flex;
-      list-style: none;
-      gap: 2rem;
-  }
+.nav-links {
+    display: flex; /* Asegura que los enlaces estén en línea por defecto */
+    list-style: none;
+    gap: 1.8rem; /* Espacio entre los enlaces */
+    margin: 0; /* Asegurar que no haya márgenes de lista */
+    padding: 0; /* Asegurar que no haya padding de lista */
+}
 
-  .nav-links a {
-      text-decoration: none;
-      color: var(--dark);
-      font-weight: 500;
-      transition: color 0.3s ease;
-  }
+.nav-links li {
+    padding: 0; /* Quitar padding de los elementos de lista */
+}
 
-  .nav-links a:hover {
-      color: var(--primary);
-  }
+.nav-links a {
+    text-decoration: none;
+    color: var(--dark);
+    font-weight: 500;
+    transition: color 0.3s ease, transform 0.2s ease;
+    padding: 0.5rem 0; /* Pequeño padding vertical para el área de click */
+    position: relative; /* Para la animación del subrayado */
+}
 
-  .lang-switch {
-      background: var(--primary);
-      color: white;
-      padding: 0.5rem 1rem;
-      border-radius: 20px;
-      border: none;
-      cursor: pointer;
-      font-weight: 500;
-      transition: all 0.3s ease;
-  }
+.nav-links a:hover {
+    color: var(--primary);
+    transform: translateY(-1px); /* Ligera elevación al pasar el ratón */
+}
 
-  .lang-switch:hover {
-      background: var(--secondary);
-      transform: translateY(-2px);
-  }
+/* Animación de subrayado */
+.nav-links a::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    background-color: var(--primary);
+    bottom: 0; /* Alinear al final del padding vertical */
+    left: 0;
+    transition: width 0.3s ease;
+}
 
-  /* Hero Section */
-  .hero {
-      height: 100vh;
-      /* Changed background to an Unsplash image for better visual */
-      background: url('https://portal.andina.pe/EDPfotografia3/Thumbnail/2021/01/31/000744932W.jpg') center center/cover no-repeat;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-      position: relative;
-      overflow: hidden;
-  }
+.nav-links a:hover::after {
+    width: 100%;
+}
 
-  .hero::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      /* Using a darker overlay for readability instead of rotating SVG */
-      background: rgba(0, 0, 0, 0.6); 
-      z-index: 5;
-  }
-  
-  /* Removed @keyframes rotate as it's not used with the new ::before */
+.lang-switch {
+    background: var(--primary);
+    color: white;
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
+    border: none;
+    cursor: pointer;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    flex-shrink: 0; /* Evita que el botón de idioma se encoja */
+}
 
-  .hero-content {
-      z-index: 10;
-      position: relative;
-      max-width: 800px;
-      padding: 2rem;
-      color: white; /* Ensure hero content text is white */
-  }
+.lang-switch:hover {
+    background: var(--secondary);
+    transform: translateY(-2px);
+}
 
-  .hero h1 {
-      font-size: clamp(2.5rem, 3vw, 4rem);
-      font-weight: 700;
-      color: white;
-      margin-bottom: 1rem;
-      text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  }
+/* --- Botón de Hamburguesa para Móviles --- */
+.menu-toggle {
+    display: none; /* Oculto por defecto en pantallas grandes */
+    flex-direction: column;
+    justify-content: space-between;
+    width: 30px;
+    height: 21px; /* 3 barras de 3px con 6px de espacio */
+    cursor: pointer;
+    z-index: 1001; /* Asegura que esté por encima del menú móvil */
+}
 
-  .hero-subtitle {
-      font-size: 1.3rem;
-      color: rgba(255, 255, 255, 0.9);
-      margin-bottom: 2rem;
-  }
+.menu-toggle .bar {
+    width: 100%;
+    height: 3px;
+    background-color: var(--dark);
+    border-radius: 2px;
+    transition: all 0.3s ease;
+}
 
-  .hero-info {
-      display: flex;
-      justify-content: center;
-      gap: 2rem;
-      margin-bottom: 3rem;
-      flex-wrap: wrap;
-  }
+/* Animación de la hamburguesa a X */
+.menu-toggle.active .bar:nth-child(1) {
+    transform: translateY(9px) rotate(45deg);
+}
 
-  .hero-info-item {
-      background: rgba(255, 255, 255, 0.1);
-      padding: 1rem 1.5rem;
-      border-radius: 50px;
-      backdrop-filter: blur(10px);
-      border: 1px solid rgba(255, 255, 255, 0.2);
-      color: white; /* Ensure text inside info items is white */
-  }
+.menu-toggle.active .bar:nth-child(2) {
+    opacity: 0;
+}
 
-  .countdown {
-      display: flex;
-      justify-content: center;
-      gap: 1rem;
-      margin-top: 2rem;
-  }
+.menu-toggle.active .bar:nth-child(3) {
+    transform: translateY(-9px) rotate(-45deg);
+}
 
-  .countdown-item {
-      background: rgba(255, 255, 255, 0.1);
-      padding: 1rem;
-      border-radius: 10px;
-      text-align: center;
-      backdrop-filter: blur(10px);
-      border: 1px solid rgba(255, 255, 255, 0.2);
-  }
+/* --- Media Query para Responsive (Menú Móvil) --- */
+@media (max-width: 992px) { /* El menú principal se convierte en hamburguesa */
+    .nav-container {
+        padding: 0 1.5rem; /* Menos padding en móvil */
+    }
 
-  .countdown-number {
-      font-size: 2rem;
-      font-weight: 700;
-      color: white;
-      display: block;
-  }
+    .nav-links {
+        display: none; /* Oculta los enlaces de navegación por defecto */
+        flex-direction: column;
+        position: absolute;
+        top: 70px; /* Debajo de la barra de navegación */
+        left: 0;
+        width: 100%;
+        background: rgba(255, 255, 255, 0.95);
+        backdrop-filter: blur(10px);
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        padding: 1rem 0;
+        border-top: 1px solid rgba(0, 0, 0, 0.05);
+        border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+        z-index: 999; /* Por debajo de la hamburguesa pero encima del contenido */
+        transform: translateY(-100%); /* Oculto hacia arriba */
+        transition: transform 0.3s ease-out;
+    }
 
-  .countdown-label {
-      font-size: 0.9rem;
-      color: rgba(255, 255, 255, 0.8);
-  }
+    .nav-links.active {
+        display: flex; /* Muestra los enlaces cuando el menú está activo */
+        transform: translateY(0); /* Desliza hacia abajo */
+    }
 
+    .nav-links li {
+        width: 100%;
+        text-align: center;
+        margin: 0.5rem 0; /* Espacio entre los items del menú móvil */
+    }
+    
+    .nav-links a {
+        padding: 0.8rem 0; /* Mayor área de toque */
+        font-size: 1.1rem;
+        width: 100%; /* El enlace ocupa todo el ancho del item */
+        display: block; /* Asegura que el padding sea efectivo */
+    }
+
+    /* El underline en móvil puede ser diferente o eliminado */
+    .nav-links a::after {
+        display: none; /* Ocultar subrayado en móvil para un look más limpio */
+    }
+    .nav-links a:hover {
+        background-color: var(--light); /* Pequeño feedback visual en hover */
+        transform: none; /* Quitar elevación en móvil */
+    }
+
+    .menu-toggle {
+        display: flex; /* Muestra el botón de hamburguesa */
+    }
+
+    .lang-switch {
+        margin-left: 1rem; /* Espacio entre el botón de hamburguesa y el selector de idioma */
+    }
+}
+
+@media (max-width: 576px) { /* Ajustes para móviles aún más pequeños */
+    .nav-container {
+        padding: 0 1rem; /* Más padding en los extremos */
+    }
+    .logo {
+        font-size: 1.4rem;
+    }
+    .lang-switch {
+        padding: 0.4rem 0.8rem;
+        font-size: 0.8rem;
+    }
+}
+
+ /* Hero Section */
+.hero {
+    height: 100vh;
+    background: url('https://portal.andina.pe/EDPfotografia3/Thumbnail/2021/01/31/000744932W.jpg') center center/cover no-repeat;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+    padding: 0 1rem; /* Añadir un pequeño padding horizontal para móviles */
+    padding-top: 80px; 
+ 
+}
+
+
+
+.hero::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.65); /* Ligeramente más oscuro para mejor contraste */
+    z-index: 5;
+}
+
+.hero-content {
+    z-index: 10;
+    position: relative;
+    max-width: 900px; /* Aumentamos ligeramente el max-width para desktop */
+    padding: 2rem;
+    color: white;
+}
+
+.hero h1 {
+    /* Usamos clamp para un control más fino en diferentes tamaños de pantalla */
+    font-size: clamp(2.5rem, 3.5vw, 4.5rem); /* Ajustado para que sea un poco más grande en desktop y responsivo */
+    font-weight: 700;
+    color: white;
+    margin-bottom: 1.5rem; /* Aumentado ligeramente el margen inferior */
+    text-shadow: 0 2px 6px rgba(0, 0, 0, 0.2); /* Sombra de texto más definida */
+}
+
+.hero-subtitle {
+    font-size: clamp(1.1rem, 2.5vw, 1.6rem); /* Responsivo */
+    color: rgba(255, 255, 255, 0.9);
+    margin-bottom: 2.5rem; /* Aumentado ligeramente */
+}
+
+.hero-info {
+    display: flex;
+    justify-content: center;
+    gap: 1.5rem; /* REDUCIDO: Espacio entre los items para que quepan mejor */
+    margin-bottom: 3rem; /* Aumentado ligeramente */
+    flex-wrap: wrap; /* Permitir que los items se envuelvan a la siguiente línea */
+}
+
+.hero-info-item {
+    background: rgba(255, 255, 255, 0.15); /* Ligeramente más opaco */
+    padding: 0.8rem 1.2rem; /* REDUCIDO: Padding para hacer los items más compactos */
+    border-radius: 40px; /* Ligeramente menos redondeado */
+    backdrop-filter: blur(8px); /* Ligeramente menos blur */
+    border: 1px solid rgba(255, 255, 255, 0.25); /* Borde un poco más visible */
+    color: white;
+    font-size: 1rem; /* Tamaño de fuente por defecto */
+    display: flex;
+    align-items: center;
+    gap: 0.5rem; /* Espacio entre icono y texto */
+}
+
+.hero-info-item i {
+    font-size: 1.1em; /* Ajustar tamaño de icono relativo al texto */
+}
+
+
+.countdown {
+    display: flex;
+    justify-content: center;
+    gap: 1rem; /* Espacio entre los items del contador */
+    margin-top: 2rem;
+    flex-wrap: wrap; /* Permitir que los items se envuelvan */
+}
+
+.countdown-item {
+    background: rgba(255, 255, 255, 0.15); /* Ligeramente más opaco */
+    padding: 0.8rem; /* REDUCIDO: Padding para hacer los items más compactos */
+    border-radius: 8px; /* Ligeramente menos redondeado */
+    text-align: center;
+    backdrop-filter: blur(8px); /* Ligeramente menos blur */
+    border: 1px solid rgba(255, 255, 255, 0.25); /* Borde un poco más visible */
+    min-width: 80px; /* Asegurar un ancho mínimo para cada item */
+}
+
+.countdown-number {
+    font-size: 1.8rem; /* Ligeramente REDUCIDO */
+    font-weight: 700;
+    color: white;
+    display: block;
+}
+
+.countdown-label {
+    font-size: 0.8rem; /* Ligeramente REDUCIDO */
+    color: rgba(255, 255, 255, 0.8);
+    text-transform: uppercase; /* Para que la etiqueta se vea más limpia */
+}
+
+/* Media Queries específicas para la sección hero */
+@media (max-width: 992px) { /* Tablets en vertical y móviles grandes */
+    .hero-content {
+        padding: 1.5rem; /* Menos padding en contenido */
+    }
+    .hero h1 {
+        font-size: clamp(2rem, 6vw, 3.5rem); /* Ajuste para tablets */
+    }
+    .hero-subtitle {
+        font-size: clamp(1rem, 2.5vw, 1.2rem);
+    }
+    .hero-info {
+        flex-direction: column; /* Apilar los items de info verticalmente */
+        gap: 0.8rem; /* Menos espacio entre items apilados */
+        margin-bottom: 2rem;
+    }
+    .hero-info-item {
+        width: fit-content; /* Ajustar ancho al contenido */
+        max-width: 80%; /* Asegurar que no se desborden */
+        margin: 0 auto; /* Centrar items */
+        font-size: 0.9rem;
+    }
+    .countdown {
+        gap: 0.8rem; /* Menos espacio entre items del contador */
+        margin-top: 1.5rem;
+    }
+    .countdown-item {
+        min-width: 70px; /* Ancho mínimo para items del contador */
+        padding: 0.6rem;
+    }
+    .countdown-number {
+        font-size: 1.5rem;
+    }
+    .countdown-label {
+        font-size: 0.75rem;
+    }
+}
+
+@media (max-width: 576px) { /* Móviles pequeños */
+    .hero-content {
+        padding: 1rem;
+    }
+    .hero h1 {
+        font-size: clamp(1.8rem, 7vw, 2.5rem); /* Más pequeño en móviles */
+        margin-bottom: 1rem;
+    }
+    .hero-subtitle {
+        font-size: clamp(0.9rem, 3vw, 1rem);
+        margin-bottom: 1.5rem;
+    }
+    .hero-info-item {
+        font-size: 0.85rem;
+        padding: 0.6rem 1rem;
+        gap: 0.4rem;
+    }
+    .hero-info-item i {
+        font-size: 1em;
+    }
+    .countdown {
+        gap: 0.6rem;
+    }
+    .countdown-item {
+        min-width: 60px;
+        padding: 0.5rem;
+    }
+    .countdown-number {
+        font-size: 1.3rem;
+    }
+    .countdown-label {
+        font-size: 0.7rem;
+    }
+}
   /* Section Styles */
   .section {
       padding: 5rem 0;

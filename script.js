@@ -258,3 +258,25 @@
         // Establecer el año actual en el footer
         document.getElementById('current-year').textContent = new Date().getFullYear();
     });
+
+    
+    // --- Funcionalidad del Menú Hamburguesa ---
+    const menuToggle = document.getElementById('menu-toggle');
+    const navLinks = document.getElementById('nav-links');
+
+    if (menuToggle && navLinks) { // Asegurarse de que los elementos existan
+        menuToggle.addEventListener('click', () => {
+            menuToggle.classList.toggle('active');
+            navLinks.classList.toggle('active');
+        });
+
+        // Cerrar el menú si se hace clic en un enlace (solo en móvil)
+        navLinks.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                if (window.innerWidth <= 992) { // Solo si estamos en vista móvil
+                    menuToggle.classList.remove('active');
+                    navLinks.classList.remove('active');
+                }
+            });
+        });
+    }

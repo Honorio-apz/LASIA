@@ -10,58 +10,65 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
 </head>
 <body>
-    <nav class="nav">
-        <div class="nav-container">
-            <a href="#home" class="logo">LASIA</a>
-            <ul class="nav-links">
-                <li><a href="#home">Home</a></li>
-                <li><a href="#about">About</a></li>
-                <li><a href="#speakers">Speakers</a></li>
-                <li><a href="#faq">FAQ</a></li>
-                <li><a href="#organizers">Organizers</a></li>
-                <li><a href="#contact">Contact</a></li>
-            </ul>
-            <button class="lang-switch" onclick="toggleLanguage()">🇬🇧 EN</button>
+<nav class="nav">
+    <div class="nav-container">
+        <a href="#home" class="logo">LASIA</a>
+        
+        <div class="menu-toggle" id="menu-toggle">
+            <div class="bar"></div>
+            <div class="bar"></div>
+            <div class="bar"></div>
         </div>
-    </nav>
+
+        <ul class="nav-links" id="nav-links">
+            <li><a href="#home">Home</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#speakers">Speakers</a></li>
+            <li><a href="#faq">FAQ</a></li>
+            <li><a href="#organizers">Organizers</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+        <button class="lang-switch" onclick="toggleLanguage()">🇬🇧 EN</button>
+    </div>
+</nav>
 
     <section id="home" class="hero">
-        <div class="hero-content">
-            <h1 data-i18n="hero-title">LATAM School of Artificial Intelligence 2025</h1>
-            <p class="hero-subtitle" data-i18n="hero-subtitle">Powered and Co-located by SIMBig</p>
-            
-            <div class="hero-info">
-                <div class="hero-info-item">
-                    <span><i class="fas fa-map-marker-alt"></i> Lima, Peru</span>
-                </div>
-                <div class="hero-info-item">
-                    <span><i class="fas fa-calendar-alt"></i> Oct 29-31, 2025</span>
-                </div>
-                <div class="hero-info-item">
-                    <span><i class="fas fa-graduation-cap"></i> FISI-UNMSM</span>
-                </div>
+    <div class="hero-content">
+        <h1 data-i18n="hero-title">LATAM School of Artificial Intelligence 2025</h1>
+        <p class="hero-subtitle" data-i18n="hero-subtitle">Powered and Co-located by SIMBig</p>
+        
+        <div class="hero-info">
+            <div class="hero-info-item">
+                <span><i class="fas fa-map-marker-alt"></i> Lima, Peru</span>
             </div>
-
-            <div class="countdown">
-                <div class="countdown-item">
-                    <span class="countdown-number" id="days">00</span>
-                    <span class="countdown-label" data-i18n="days">Days</span>
-                </div>
-                <div class="countdown-item">
-                    <span class="countdown-number" id="hours">00</span>
-                    <span class="countdown-label" data-i18n="hours">Hours</span>
-                </div>
-                <div class="countdown-item">
-                    <span class="countdown-number" id="minutes">00</span>
-                    <span class="countdown-label" data-i18n="minutes">Minutes</span>
-                </div>
-                <div class="countdown-item">
-                    <span class="countdown-number" id="seconds">00</span>
-                    <span class="countdown-label" data-i18n="seconds">Seconds</span>
-                </div>
+            <div class="hero-info-item">
+                <span><i class="fas fa-calendar-alt"></i> Oct 29-31, 2025</span>
+            </div>
+            <div class="hero-info-item">
+                <span><i class="fas fa-graduation-cap"></i> FISI-UNMSM</span>
             </div>
         </div>
-    </section>
+
+        <div class="countdown">
+            <div class="countdown-item">
+                <span class="countdown-number" id="days">00</span>
+                <span class="countdown-label" data-i18n="days">Days</span>
+            </div>
+            <div class="countdown-item">
+                <span class="countdown-number" id="hours">00</span>
+                <span class="countdown-label" data-i18n="hours">Hours</span>
+            </div>
+            <div class="countdown-item">
+                <span class="countdown-number" id="minutes">00</span>
+                <span class="countdown-label" data-i18n="minutes">Minutes</span>
+            </div>
+            <div class="countdown-item">
+                <span class="countdown-number" id="seconds">00</span>
+                <span class="countdown-label" data-i18n="seconds">Seconds</span>
+            </div>
+        </div>
+    </div>
+</section>
 
     <section id="about" class="section">
         <h2 class="section-title fade-in" data-i18n="about-title">About LASIA</h2>
