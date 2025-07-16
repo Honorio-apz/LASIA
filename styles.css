@@ -642,6 +642,60 @@
     }
 }
 
+/* Speakers Section - Estilo para el Logo de la Institución */
+.speaker-institution-logo {
+    margin-bottom: 1.5rem; /* Espacio debajo del logo para separarlo de la biografía */
+    min-height: 40px; /* Altura mínima para mantener la consistencia del diseño */
+    display: flex;
+    justify-content: center; /* Centra el logo horizontalmente */
+    align-items: center;
+}
+
+.speaker-institution-logo img {
+    max-height: 40px; /* Tamaño máximo de la altura del logo */
+    max-width: 150px; /* Tamaño máximo del ancho del logo */
+    object-fit: contain; /* Asegura que el logo no se distorsione */
+    opacity: 0.8; /* Ligeramente transparente para que no compita con la foto principal del ponente */
+    transition: opacity 0.3s ease;
+}
+
+.speaker-card:hover .speaker-institution-logo img {
+    opacity: 1; /* Opacidad completa al pasar el ratón por la tarjeta */
+}
+
+/* Modificaciones a los estilos existentes para un mejor ajuste */
+.speaker-name {
+    font-size: 1.4rem; /* Tu valor original */
+    font-weight: 600;
+    margin-bottom: 0.2rem; /* REDUCIDO: Menos margen para acercar el rol */
+    color: var(--dark);
+}
+
+.speaker-role {
+    color: var(--primary);
+    font-weight: 500;
+    margin-bottom: 0.8rem; /* REDUCIDO: Menos margen para acercar el logo */
+}
+
+/* Ajuste del bio para acomodar el nuevo elemento */
+.speaker-bio {
+    color: var(--gray);
+    line-height: 1.6;
+    margin-bottom: 1rem; /* Reducido para que la tarjeta no sea demasiado larga */
+    /* Mantenemos el truncamiento para tarjetas uniformes */
+    max-height: 5em; 
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 3; /* Un poco menos de líneas para mantener la compacidad */
+    -webkit-box-orient: vertical;
+}
+
+/* Ajuste de las redes sociales para el espacio */
+.speaker-socials {
+    margin-top: 1rem; /* Espacio entre el bio y los iconos sociales */
+}
+
   /* FAQ Section */
   .faq-grid {
       display: grid;
