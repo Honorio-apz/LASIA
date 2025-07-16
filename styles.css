@@ -724,41 +724,176 @@
       margin-bottom: 1rem;
   }
 
-  /* Footer */
-  .footer {
-      background: var(--dark);
-      color: white;
-      padding: 3rem 0 1rem;
-      margin-top: 5rem;
-  }
+  /* Footer Modernizado */
+.footer {
+    background: var(--dark); /* Fondo oscuro */
+    color: var(--white); /* Texto blanco */
+    padding: 4rem 0 2rem; /* Más padding vertical para mayor espacio */
+    margin-top: 5rem; /* Margen superior para separarlo de la última sección */
+    border-top: 5px solid var(--primary); /* Una línea de color primario en la parte superior del footer */
+}
 
-  .footer-content {
-      max-width: 1200px;
-      margin: 0 auto;
-      padding: 0 2rem;
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 2rem;
-  }
+.footer-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 2rem;
+    display: grid;
+    /* Las columnas se ajustan automáticamente. Intenta 4 columnas por defecto,
+       pero se adaptarán a 2 o 1 en pantallas más pequeñas. */
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); 
+    gap: 2.5rem; /* Aumentamos el espacio entre las columnas */
+    text-align: left; /* Alineamos el texto a la izquierda por defecto */
+}
 
-  .footer-section h3 {
-      font-size: 1.3rem;
-      margin-bottom: 1rem;
-      color: var(--secondary);
-  }
+.footer-section {
+    padding: 0.5rem; /* Pequeño padding para cada sección del footer */
+}
 
-  .footer-section p {
-      color: rgba(255, 255, 255, 0.8);
-      line-height: 1.6;
-  }
+.footer-section h3 {
+    font-size: 1.4rem; /* Ligeramente más grande y prominente */
+    font-weight: 600; /* Más peso para los títulos */
+    margin-bottom: 1.5rem; /* Más espacio debajo del título */
+    color: var(--secondary); /* Color secundario para los títulos */
+    position: relative;
+}
 
-  .footer-bottom {
-      text-align: center;
-      padding-top: 2rem;
-      border-top: 1px solid rgba(255, 255, 255, 0.1);
-      color: rgba(255, 255, 255, 0.6);
-  }
+/* Opcional: Un pequeño subrayado animado para los títulos del footer */
+.footer-section h3::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: -5px;
+    width: 40px; /* Ancho del subrayado */
+    height: 3px;
+    background: var(--secondary);
+    border-radius: 2px;
+}
 
+.footer-section p,
+.footer-section address {
+    color: rgba(255, 255, 255, 0.8);
+    line-height: 1.8; /* Más espacio entre líneas para mejor legibilidad */
+    font-size: 0.95rem; /* Tamaño de fuente ligeramente más grande */
+    margin-bottom: 0.8rem; /* Espacio entre párrafos */
+}
+
+.footer-section p:last-child, /* Para el email */
+.footer-section address:last-child {
+    margin-bottom: 0;
+}
+
+
+/* Estilos para los iconos sociales en el footer */
+.footer-socials-icons { /* Nueva clase para este div para no chocar con speaker-socials */
+    display: flex;
+    justify-content: flex-start; /* Alinea los iconos a la izquierda */
+    gap: 1rem; /* Espacio entre los iconos */
+    margin-top: 1rem; /* Espacio sobre los iconos */
+}
+
+.footer-socials-icons a {
+    width: 65px; /* Tamaño más grande para los iconos */
+    height: 35px;
+    background: rgba(255, 255, 255, 0.1); /* Fondo semitransparente sutil */
+    border-radius: 50%; /* Círculos perfectos */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--white); /* Icono blanco */
+    font-size: 1.5rem; /* Tamaño del icono dentro del círculo */
+    transition: background-color 0.3s ease, transform 0.3s ease, color 0.3s ease;
+    border: 1px solid rgba(255, 255, 255, 0.2); /* Borde sutil */
+}
+
+.footer-socials-icons a:hover {
+    background: var(--primary); /* Fondo primario al pasar el ratón */
+    color: var(--white); /* Color blanco del icono al pasar el ratón */
+    transform: translateY(-3px) scale(1.1); /* Efecto de elevación y zoom */
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3); /* Sombra al pasar el ratón */
+}
+
+/* Sección inferior del footer (copyright y enlaces) */
+.footer-bottom-bar { /* Nueva clase para el div inferior */
+    max-width: 1200px;
+    margin: 3rem auto 0 auto; /* Más margen superior */
+    padding: 1.5rem 2rem 0; /* Padding superior */
+    border-top: 1px solid rgba(255, 255, 255, 0.15); /* Borde superior más definido */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap; /* Permitir que los elementos se envuelvan en pantallas pequeñas */
+    gap: 1rem; /* Espacio entre elementos si se envuelven */
+    font-size: 0.9rem;
+    color: rgba(255, 255, 255, 0.6);
+}
+
+.footer-links-bottom { /* Nueva clase para los enlaces inferiores */
+    display: flex;
+    gap: 1.5rem; /* Espacio entre los enlaces */
+    flex-wrap: wrap;
+    justify-content: center; /* Centrar en móvil */
+}
+
+.footer-links-bottom a {
+    color: rgba(255, 255, 255, 0.7);
+    transition: color 0.3s ease;
+}
+
+.footer-links-bottom a:hover {
+    color: var(--primary);
+}
+
+/* Media Queries para responsividad del Footer */
+@media (max-width: 768px) {
+    .footer {
+        padding: 3rem 0 1.5rem; /* Menos padding en móvil */
+    }
+    .footer-content {
+        grid-template-columns: 1fr; /* Una sola columna en móvil */
+        text-align: center; /* Centrar todo el texto en móvil */
+        gap: 2rem; /* Menos gap cuando está apilado */
+    }
+    .footer-section h3 {
+        margin-bottom: 1rem; /* Menos margen debajo de los títulos */
+    }
+    .footer-section h3::after {
+        left: 50%; /* Centrar el subrayado en móvil */
+        transform: translateX(-50%);
+    }
+    .footer-socials-icons {
+        justify-content: center; /* Centrar los iconos sociales en móvil */
+        margin-top: 0.5rem;
+    }
+    .footer-bottom-bar {
+        flex-direction: column; /* Apilar copyright y enlaces */
+        text-align: center;
+        padding-top: 1rem;
+        margin-top: 2rem;
+        gap: 0.8rem;
+    }
+    .footer-links-bottom {
+        flex-direction: column; /* Apilar enlaces inferiores */
+        gap: 0.5rem;
+    }
+}
+
+@media (max-width: 500px) {
+    .footer-section h3 {
+        font-size: 1.3rem;
+    }
+    .footer-section p,
+    .footer-section address {
+        font-size: 0.9rem;
+    }
+    .footer-socials-icons a {
+        width: 40px;
+        height: 40px;
+        font-size: 1.3rem;
+    }
+    .footer-bottom-bar {
+        font-size: 0.8rem;
+    }
+}
   /* Mobile Responsive */
   @media (max-width: 992px) { /* Adjusted breakpoint for more flexibility */
       .nav-links {
