@@ -49,6 +49,7 @@
     border-bottom: 1px solid rgba(0, 0, 0, 0.05); /* Borde sutil en la parte inferior */
 }
 
+
 .nav-container {
     max-width: 1200px;
     margin: 0 auto;
@@ -61,12 +62,28 @@
 
 .logo {
     font-size: 1.6rem; /* Ligeramente más grande */
-    font-weight: 700;
+    font-weight: 100;
     color: var(--primary);
     text-decoration: none;
     flex-shrink: 0; /* Evita que el logo se encoja */
 }
+/* Navigation - Ajuste del tamaño del logo (IMAGEN) */
+.logo img {
+    height: 50px; /* Define la altura deseada para tu logo */
+    width: auto; /* Mantiene la proporción de la imagen */
+    max-height: 100%; /* Asegura que no se desborde del contenedor */
+    /* Si la imagen aparece pixelada o borrosa, puedes probar con 'width' fijo también: */
+    /* width: 120px; */ 
+    /* Y si necesitas ajustarla verticalmente dentro del navbar: */
+    vertical-align: middle; 
+}
 
+/* Opcional: Ajustes para pantallas más pequeñas si el logo es demasiado grande en móvil */
+@media (max-width: 576px) {
+    .logo img {
+        height: 40px; /* Un tamaño más pequeño para móviles */
+    }
+}
 .nav-links {
     display: flex; /* Asegura que los enlaces estén en línea por defecto */
     list-style: none;
